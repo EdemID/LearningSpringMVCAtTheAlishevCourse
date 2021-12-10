@@ -1,9 +1,12 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <body>
 <h2>Hello!</h2>
 
 <a href="/first/goodbye">Say Goodbye</a>
 or
-<a href="/first/hello?name=Tom&surname=Black">Say Goodbye</a>
+<a href="/first/hello?name=Tom&surname=Black">Say Hello</a>
+
+<h3>Calculator!</h3>
+<p th:text="${message}"></p>
 </body>
 </html>
