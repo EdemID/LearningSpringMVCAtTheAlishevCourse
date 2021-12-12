@@ -7,5 +7,17 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/first_db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="postgres@localhost" uuid="90230ac8-74db-4a81-90e7-fd463fc977e4">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="PostgreSQL - first_db@localhost" uuid="e3944194-4a51-43c8-9053-b74fdef9b815">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/first_db</jdbc-url>
+    </data-source>
   </component>
 </project>
