@@ -4,11 +4,11 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Новый пользователь</title>
+    <title>New person</title>
 </head>
 <body>
 <form th:method="POST" th:action="@{/persons}" th:object="${person}">
-    <label for="name">Введите имя: </label>
+    <label for="name">Enter name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/>
     <input type="submit" value="Create!"/>

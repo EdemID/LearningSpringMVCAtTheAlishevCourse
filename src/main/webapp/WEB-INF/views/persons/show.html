@@ -4,10 +4,18 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Персона</title>
+    <title>Show</title>
 </head>
 <body>
 <p th:text="${person.getName()}">VALUE</p>
 <p th:text="${person.getId()}">VALUE</p>
+
+<a th:href="@{/persons/{id}/edit(id=${person.getId()})}">Edit</a>
+
+<form th:method="DELETE" th:action="@{/persons/{id}(id=${person.getId()})}">
+    <label>
+        <input th:type="submit" value="Delete"/>
+    </label>
+</form>
 </body>
 </html>
