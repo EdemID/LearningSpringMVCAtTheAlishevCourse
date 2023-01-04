@@ -41,7 +41,7 @@ public class UserDAO {
     }
 
     public void save(User user) {
-        jdbcTemplate.update("INSERT INTO usertable VALUES(1,?,?,?)",
+        jdbcTemplate.update("INSERT INTO usertable (name, age, email) VALUES(?,?,?)",
                 user.getName(),
                 user.getAge(),
                 user.getEmail()
@@ -69,15 +69,14 @@ public class UserDAO {
         List<User> users = create1000Users();
 
         jdbcTemplate.batchUpdate(
-                "INSERT INTO usertable VALUES (?,?,?,?)"
+                "INSERT INTO usertable (name, age, email) VALUES(?,?,?)"
                 ,
                 new BatchPreparedStatementSetter() {
                     @Override
                     public void setValues(PreparedStatement preparedStatement, int i) throws SQLException {
-                        preparedStatement.setInt(1, users.get(i).getId());
-                        preparedStatement.setString(2, users.get(i).getName());
-                        preparedStatement.setInt(3, users.get(i).getAge());
-                        preparedStatement.setString(4, users.get(i).getEmail());
+                        preparedStatement.setString(1, users.get(i).getName());
+                        preparedStatement.setInt(2, users.get(i).getAge());
+                        preparedStatement.setString(3, users.get(i).getEmail());
                     }
 
                     @Override
