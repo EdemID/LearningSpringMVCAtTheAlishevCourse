@@ -23,6 +23,12 @@
 
     <div style="color:dodgerblue" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Здесь будет текст ошибки</div>
     <br/>
+
+    <label for="address">Enter address: </label>
+    <input type="text" th:field="*{address}" id="address"/>
+    <div style="color:red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Здесь будет текст ошибки</div>
+    <br/>
+
     <input type="submit" value="Update!"/>
 </form>
 </body>

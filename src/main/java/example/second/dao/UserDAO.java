@@ -47,18 +47,20 @@ public class UserDAO {
     }
 
     public void save(User user) {
-        jdbcTemplate.update("INSERT INTO usertable (name, age, email) VALUES(?,?,?)",
+        jdbcTemplate.update("INSERT INTO usertable (name, age, email, address) VALUES(?,?,?,?)",
                 user.getName(),
                 user.getAge(),
-                user.getEmail()
+                user.getEmail(),
+                user.getAddress()
         );
     }
 
     public void update(int id, User updateuser) {
-        jdbcTemplate.update("UPDATE usertable SET name=?, age=?, email=? WHERE id=?",
+        jdbcTemplate.update("UPDATE usertable SET name=?, age=?, email=?, address=? WHERE id=?",
                 updateuser.getName(),
                 updateuser.getAge(),
                 updateuser.getEmail(),
+                updateuser.getAddress(),
                 id
         );
     }

@@ -1,9 +1,6 @@
 package example.second.model;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class User {
 
@@ -20,7 +17,12 @@ public class User {
     @Email(message = "Email should be valid")
     private String email;
 
+    /*** имеет определенную структуру: Страна, Город, Индекс (6 цифр)*/
+    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Your address should be in this format: Country, City, ZIP (6 digits)")
     private String address;
+
+    public User() {
+    }
 
     public User(int id, int age, String name, String email, String address) {
         this.id = id;
@@ -28,9 +30,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.address = address;
-    }
-
-    public User() {
     }
 
     public int getId() {
