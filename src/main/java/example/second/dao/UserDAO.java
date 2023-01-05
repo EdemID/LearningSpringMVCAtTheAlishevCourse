@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserDAO {
@@ -35,9 +36,14 @@ public class UserDAO {
                 .stream().findAny().orElse(null);
     }
 
-    public User showV2(int index) {
+    public User showWithBeanPropertyRowMapper(int index) {
         return jdbcTemplate.query("SELECT * FROM usertable WHERE id=?", new Object[]{index}, new BeanPropertyRowMapper<>(User.class))
                 .stream().findAny().orElse(null);
+    }
+
+    public Optional<User> show(String email) {
+        return jdbcTemplate.query("SELECT * FROM usertable WHERE email=?", new Object[]{email}, new UserMapper())
+                .stream().findAny();
     }
 
     public void save(User user) {
@@ -60,10 +66,6 @@ public class UserDAO {
     public void delete(int id) {
         jdbcTemplate.update("DELETE FORM usertable WHERE id=?", id);
     }
-
-    ////
-    //// Тестируем производительность пакетной вставки
-    ////
 
     public void testBatchUpdate() {
         List<User> users = create1000Users();
@@ -90,11 +92,9 @@ public class UserDAO {
         List<User> users = new ArrayList<>();
 
         for (int i = 0; i < 1000; i++) {
-            users.add(new User(i, 30 + i, "User " + i, "test" + i + "@fd.com"));
+            users.add(new User(i, 30 + i, "User " + i, "test" + i + "@fd.com", "Moscow"));
         }
 
         return users;
     }
-
-
 }

@@ -2,6 +2,7 @@ package example.second.controller;
 
 import example.second.dao.UserDAO;
 import example.second.model.User;
+import example.second.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,12 @@ import javax.validation.Valid;
 public class UsersController {
 
     private final UserDAO userDAO;
+    private final UserValidator validator;
 
     @Autowired
-    public UsersController(UserDAO userDAO) {
+    public UsersController(UserDAO userDAO, UserValidator validator) {
         this.userDAO = userDAO;
+        this.validator = validator;
     }
 
     @GetMapping
@@ -49,6 +52,8 @@ public class UsersController {
     @PostMapping()
     public String create(@ModelAttribute("user") @Valid User user,
                          BindingResult bindingResult) {
+        validator.validate(user, bindingResult);
+
         if (bindingResult.hasErrors()) {
             return "/users/new";
         }
@@ -66,6 +71,8 @@ public class UsersController {
     public String update(@ModelAttribute("user") @Valid User user,
                          BindingResult bindingResult,
                          @PathVariable("id") int id) {
+        validator.validate(user, bindingResult);
+
         if (bindingResult.hasErrors()) {
             return "/users/edit";
         }

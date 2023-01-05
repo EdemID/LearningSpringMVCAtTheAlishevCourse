@@ -20,11 +20,14 @@ public class User {
     @Email(message = "Email should be valid")
     private String email;
 
-    public User(int id, int age, String name, String email) {
+    private String address;
+
+    public User(int id, int age, String name, String email, String address) {
         this.id = id;
         this.age = age;
         this.name = name;
         this.email = email;
+        this.address = address;
     }
 
     public User() {
@@ -60,5 +63,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
